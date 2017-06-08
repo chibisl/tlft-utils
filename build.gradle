@@ -1,0 +1,28 @@
+version = '1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+}
+
+apply plugin: "java"
+
+dependencies {
+    compile "com.badlogicgames.gdx:gdx:1.9.6"
+    compile "com.badlogicgames.gdx:gdx-ai:1.8.1"
+}
+
+sourceCompatibility = 1.6
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+jar {
+    from files(sourceSets.main.output.classesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+    
+    destinationDir = file("$rootDir/build")
+    baseName  'tlft-utils'
+}
