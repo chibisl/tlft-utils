@@ -12,6 +12,10 @@ public class ComponentActor extends Actor {
     public <T extends Component> T getComponent(Class<T> type) {
         return type.cast(components.get(type));
     }
+    
+    public <T extends Component> boolean hasComponent(Class<T> type) {
+        return components.get(type) != null;
+    }
 
     public <T extends Component> void addComponent(Class<T> type, T component) {
         component.setObject(this);
