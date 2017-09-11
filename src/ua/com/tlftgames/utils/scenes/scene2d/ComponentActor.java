@@ -17,9 +17,9 @@ public class ComponentActor extends Actor {
         return components.get(type) != null;
     }
 
-    public <T extends Component> void addComponent(Class<T> type, T component) {
+    public <T extends Component> void addComponent(T component) {
         component.setObject(this);
-        components.put(type, component);
+        components.put(component.getClass(), component);
     }
 
     public <T extends Component> void removeComponent(Class<T> type) {
